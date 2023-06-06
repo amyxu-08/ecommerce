@@ -2,15 +2,40 @@ const express = require("express");
 const router = express.Router();
 const db = require("./firebase");
 
-const { collection, doc, setDoc, getDocs } = require("firebase/firestore");
+const {
+  collection,
+  doc,
+  setDoc,
+  getDocs,
+  query,
+  updateDoc,
+  where,
+  getDoc,
+} = require("firebase/firestore");
 
 router.post("/", async (req, res) => {
   try {
     const { title, price, rating } = req.body;
 
-    // Add the cart item to the cart collection in your Firebase Firestore
-    const cartRef = doc(collection(db, "cart"));
-    await setDoc(cartRef, { title, price, rating });
+    // Check if the item already exists in the cart
+    const cartQuery = query(
+      collection(db, "cart"),
+      where("title", "==", title)
+    );
+    const cartSnapshot = await getDocs(cartQuery);
+    const cartDocs = cartSnapshot.docs;
+
+    if (cartDocs.length > 0) {
+      // Item already exists, increment the quantity by 1
+      const cartItemRef = doc(db, "cart", cartDocs[0].id);
+      const cartItemDoc = await getDoc(cartItemRef);
+      const currentQuantity = cartItemDoc.data().quantity;
+      await updateDoc(cartItemRef, { quantity: currentQuantity + 1 });
+    } else {
+      // Item doesn't exist, add it to the cart with quantity 1
+      const cartRef = doc(collection(db, "cart"));
+      await setDoc(cartRef, { title, price, rating, quantity: 1 });
+    }
 
     res.json({ success: true, message: "Item added to cart successfully!" });
   } catch (error) {

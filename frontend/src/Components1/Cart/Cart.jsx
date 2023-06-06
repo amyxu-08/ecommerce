@@ -19,7 +19,7 @@ function Cart() {
   };
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [open]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -71,10 +71,10 @@ function Cart() {
               }}
             >
               <Typography variant="body1" style={{ textAlign: "right" }}>
-                {item.title}
+                {item.title} x {item.quantity}
               </Typography>
               <Typography variant="body1" style={{ textAlign: "left" }}>
-                {item.price} $
+                {item.price * item.quantity} $
               </Typography>
             </div>
           ))}
@@ -90,7 +90,7 @@ function Cart() {
             <span>Total Price:</span>
             <span>
               {Object.values(cartData).reduce(
-                (total, item) => total + item.price,
+                (total, item) => total + item.price * item.quantity,
                 0
               )}{" "}
               $
