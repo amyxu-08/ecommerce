@@ -6,8 +6,12 @@ var logger = require("morgan");
 require("dotenv").config();
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-
+var buyFromUsRouter = require("./routes/buyFromUs");
+var cartRouter = require("./routes/cart");
 var app = express();
+const cors = require("cors");
+
+app.use(cors());
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -35,6 +39,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/buyFromUs", buyFromUsRouter);
+app.use("/cart", cartRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
