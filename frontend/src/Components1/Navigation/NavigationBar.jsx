@@ -25,7 +25,7 @@ const NavigationBar = () => {
   };
 
   return (
-    <AppBar position="fixed" sx={{ backgroundColor: "#222", boxShadow: "none" }}>
+    <AppBar position="fixed" sx={{ backgroundColor: "#297F61", boxShadow: "none" }}>
       <Toolbar sx={{ justifyContent: "space-between" }}>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: "left" }}>
           ECommerce
