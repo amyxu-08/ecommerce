@@ -11,7 +11,8 @@ router.post('/', async (req, res) => {
     name: req.body.name,
     user: req.body.user,
     price: req.body.price,
-    quantity: req.body.quantity
+    quantity: req.body.quantity,
+    email: req.body.email
   };
   try {
     const docRef = await addDoc(collection(db, 'products'), newProductData);

@@ -8,7 +8,7 @@ import Stack from '@mui/material/Stack';
 const PostButton = ({ postData, onClose, setErrorMessage }) => {
   const handleClick = async () => {
     // Check if all fields have values
-    if (!postData.image || !postData.name || !postData.user || !postData.price || !postData.quantity) {
+    if (!postData.image || !postData.name || !postData.user || !postData.price || !postData.quantity || !postData.email) {
       // Update error message
       setErrorMessage('Please fill out all fields');
       return;
@@ -41,6 +41,7 @@ const You = () => {
   const [user, setUser] = useState('');
   const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(0);
+  const [email, setEmail] = useState('');
   const [open, setOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -53,6 +54,7 @@ const You = () => {
       setUser('');
       setPrice(0);
       setQuantity(0);
+      setEmail('');
       setErrorMessage('');
     }
   };
@@ -81,15 +83,7 @@ const You = () => {
           {errorMessage && <p>{errorMessage}</p>}
           <form>
             <TextField
-              label="Image URL"
-              value={image}
-              onChange={e => setImage(e.target.value)}
-              fullWidth
-              margin="normal"
-              required
-            /><br />
-            <TextField
-              label="Name"
+              label="Item Name"
               value={name}
               onChange={e => setName(e.target.value)}
               fullWidth
@@ -97,9 +91,25 @@ const You = () => {
               required
             /><br />
             <TextField
-              label="User"
+              label="Seller"
               value={user}
               onChange={e => setUser(e.target.value)}
+              fullWidth
+              margin="normal"
+              required
+            /><br />
+            <TextField
+              label="Email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              fullWidth
+              margin="normal"
+              required
+            /><br />
+            <TextField
+              label="Image URL"
+              value={image}
+              onChange={e => setImage(e.target.value)}
               fullWidth
               margin="normal"
               required
@@ -122,7 +132,7 @@ const You = () => {
             /><br />
           </form>
           <Stack direction="row" spacing={2}>
-            <PostButton postData={{ image, name, user, price, quantity }} onClose={handleClose} setErrorMessage={setErrorMessage} />
+            <PostButton postData={{ image, name, user, price, quantity, email }} onClose={handleClose} setErrorMessage={setErrorMessage} />
             <Button variant="contained" onClick={() => handleClose(true)}>Cancel</Button>
           </Stack>
         </Box>
