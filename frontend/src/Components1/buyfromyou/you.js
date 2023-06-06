@@ -61,7 +61,6 @@ const You = () => {
 
   return (
     <div>
-      <h1>Buy From You</h1>
       <Button variant="contained" onClick={handleOpen}>Add an Item</Button>
       <Modal
         open={open}

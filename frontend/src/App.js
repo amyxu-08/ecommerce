@@ -6,6 +6,7 @@ import NavigationBar from "./Components1/Navigation/NavigationBar";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import You from "./Components1/buyfromyou/you";
 import BuyFromUs from "./Components1/BuyFromUs/buyFromUs";
+import ItemDisplay from "./Components1/buyfromyou/itemdisplay";
 const theme = createTheme({
   palette: {
     primary: {
@@ -32,7 +33,12 @@ function App() {
         <Box>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/buy-from-you" element={<You />} />
+            <Route path="/buy-from-you" element={
+              <>
+                <ItemDisplay />
+                <You />
+              </>
+            } />
             <Route path="/buyFromUs" element={<BuyFromUs />} />
           </Routes>
         </Box>
