@@ -128,10 +128,13 @@ const NavigationBar = () => {
             <ListItemText primary="Buy From Us" />
           </ListItem>
           <ListItem button component={RouterLink} to="/my-music">
-            <ListItemText primary="My Music" />
+            <ListItemText primary="By From You" />
           </ListItem>
           <ListItem button component={RouterLink} to="/profile">
             <ListItemText primary="Profile" />
+          </ListItem>
+          <ListItem style={{ paddingLeft: 6 }} button component={RouterLink}>
+            <Cart toggleCart={toggleCart}></Cart>
           </ListItem>
         </List>
       </Drawer>
