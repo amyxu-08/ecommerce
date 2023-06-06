@@ -32,7 +32,6 @@ function BuyFromUs() {
     try {
       const response = await fetch(`${API_URL}/buyFromUs/${category}`);
       const data = await response.json();
-      console.log(data);
 
       setCategoryData((prevData) => ({
         ...prevData,
