@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./Components1/Home/Home";
 import NavigationBar from "./Components1/Navigation/NavigationBar";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import You from "./Components1/buyfromyou/you";
 
 const theme = createTheme({
   palette: {
@@ -31,6 +32,7 @@ function App() {
         <Box>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/buy-from-you" element={<You />} />
           </Routes>
         </Box>
       </div>

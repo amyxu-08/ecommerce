@@ -42,7 +42,7 @@ const NavigationBar = () => {
             <Button component={RouterLink} to="/search" color="inherit" sx={{ mx: 1, textTransform: "none", textDecoration: "none", "&:hover": { textDecoration: "underline" } }}>
               Buy From Us
             </Button>
-            <Button component={RouterLink} to="/my-music" color="inherit" sx={{ mx: 1, textTransform: "none", textDecoration: "none", "&:hover": { textDecoration: "underline" } }}>
+            <Button component={RouterLink} to="/buy-from-you" color="inherit" sx={{ mx: 1, textTransform: "none", textDecoration: "none", "&:hover": { textDecoration: "underline" } }}>
               Buy From You
             </Button>
             <Button component={RouterLink} to="/profile" color="inherit" sx={{ mx: 1, textTransform: "none", textDecoration: "none", "&:hover": { textDecoration: "underline" } }}>
