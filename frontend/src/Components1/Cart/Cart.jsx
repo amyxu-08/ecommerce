@@ -1,22 +1,23 @@
 import { Modal, Box, Typography, Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { Link as RouterLink } from "react-router-dom";
-
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 function Cart() {
   const API_URL = "http://localhost:9000";
 
   const [cartData, setcartData] = useState({});
   const [open, setOpen] = React.useState(false);
 
-  const fetchData = async (category) => {
+  const fetchData = async () => {
     try {
       const response = await fetch(`${API_URL}/cart`);
       const data = await response.json();
       setcartData(data.cartItems);
     } catch (error) {
-      console.error("Error retrieving category data:", error);
+      console.error("Error retrieving cart data:", error);
     }
   };
+
   useEffect(() => {
     fetchData();
   }, [open]);
@@ -27,6 +28,23 @@ function Cart() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleDeleteItem = async (itemId) => {
+    try {
+      const response = await fetch(`${API_URL}/cart/${itemId}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        // Refresh cart data after successful deletion
+        fetchData();
+      } else {
+        console.error("Failed to delete item from cart.");
+      }
+    } catch (error) {
+      console.error("Error deleting item from cart:", error);
+    }
   };
 
   return (
@@ -52,7 +70,7 @@ function Cart() {
             top: "50%",
             right: "0",
             transform: "translateY(-50%)",
-            width: "400px",
+            width: "500px",
             bgcolor: "background.paper",
             boxShadow: 24,
             p: 4,
@@ -70,14 +88,22 @@ function Cart() {
                 marginBottom: "8px",
               }}
             >
-              <Typography variant="body1" style={{ textAlign: "right" }}>
+              <RemoveCircleOutlineIcon
+                style={{ textAlign: "left", marginRight: "8px" }}
+                onClick={() => handleDeleteItem(item.id)}
+              />
+              <Typography
+                variant="body1"
+                style={{ flex: 1, textAlign: "left" }}
+              >
                 {item.title} x {item.quantity}
               </Typography>
-              <Typography variant="body1" style={{ textAlign: "left" }}>
+              <Typography variant="body1" style={{ textAlign: "right" }}>
                 {item.price * item.quantity} $
               </Typography>
             </div>
           ))}
+
           <hr />
           <Typography
             variant="body1"
