@@ -39,7 +39,7 @@ const NavigationBar = () => {
             <Button component={RouterLink} to="/" color="inherit" sx={{ mx: 1, textTransform: "none", textDecoration: "none", "&:hover": { textDecoration: "underline" } }}>
               Home
             </Button>
-            <Button component={RouterLink} to="/search" color="inherit" sx={{ mx: 1, textTransform: "none", textDecoration: "none", "&:hover": { textDecoration: "underline" } }}>
+            <Button component={RouterLink} to="/buyFromUs" color="inherit" sx={{ mx: 1, textTransform: "none", textDecoration: "none", "&:hover": { textDecoration: "underline" } }}>
               Buy From Us
             </Button>
             <Button component={RouterLink} to="/my-music" color="inherit" sx={{ mx: 1, textTransform: "none", textDecoration: "none", "&:hover": { textDecoration: "underline" } }}>
@@ -54,10 +54,10 @@ const NavigationBar = () => {
       <Drawer anchor="right" open={isDrawerOpen} onClose={toggleDrawer}>
         <List sx={{ width: 250 }} onClick={toggleDrawer}>
           <ListItem button component={RouterLink} to="/">
-            <ListItemText primary="Discover" />
+            <ListItemText primary="Home" />
           </ListItem>
-          <ListItem button component={RouterLink} to="/search">
-            <ListItemText primary="Search" />
+          <ListItem button component={RouterLink} to="/buyFromUs">
+            <ListItemText primary="Buy From Us" />
           </ListItem>
           <ListItem button component={RouterLink} to="/my-music">
             <ListItemText primary="My Music" />
