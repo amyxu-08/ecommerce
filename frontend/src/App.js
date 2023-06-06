@@ -6,7 +6,7 @@ import Payment from "./Components1/Payment/Payment";
 import Completion from "./Components1/Payment/Completion";
 import NavigationBar from "./Components1/Navigation/NavigationBar";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-
+import BuyFromUs from "./Components1/BuyFromUs/buyFromUs";
 const theme = createTheme({
   palette: {
     primary: {
@@ -33,8 +33,12 @@ function App() {
         <Box>
           <Routes>
             <Route path="/" element={<Home />} />
+
             <Route path="/payment" element={<Payment />} />
             <Route path="/completion" element={<Completion />} />
+
+            <Route path="/buyFromUs" element={<BuyFromUs />} />
+
           </Routes>
         </Box>
       </div>
