@@ -59,7 +59,7 @@ const Home = () => {
       </SloganContainer>
       <Container maxWidth="lg">
         <Grid container spacing={4} justify="left">
-          <Grid item xs={12} sm={4} md={4} lg={4}>
+          <Grid item xs={12} sm={12} md={4} lg={4}>
             <Card style={{ height: "100%" }}>
               <CardContent style={{ flexGrow: 1 }}>
                 <Typography variant="h4" gutterBottom>
@@ -77,7 +77,7 @@ const Home = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={12} sm={4} md={4} lg={4}>
+          <Grid item xs={12} sm={12} md={4} lg={4}>
             <Card style={{ height: "100%" }}>
               <CardContent style={{ flexGrow: 1 }}>
                 <Typography variant="h4" gutterBottom>
@@ -97,7 +97,7 @@ const Home = () => {
               </StyledButton>
             </Card>
           </Grid>
-          <Grid item xs={12} sm={4} md={4} lg={4}>
+          <Grid item xs={12} sm={12} md={4} lg={4}>
             <Card style={{ height: "100%" }}>
               <CardContent style={{ flexGrow: 1 }}>
                 <Typography variant="h4" gutterBottom>
