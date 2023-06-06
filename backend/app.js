@@ -8,8 +8,12 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var publicRouter = require("./routes/publicapi/public");
 var itemsRouter = require('./routes/buyfromyou/items');
-
+var buyFromUsRouter = require("./routes/buyFromUs");
+var cartRouter = require("./routes/cart");
 var app = express();
+const cors = require("cors");
+
+app.use(cors());
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -39,6 +43,8 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/public", publicRouter);
 app.use('/items', itemsRouter);
+app.use("/buyFromUs", buyFromUsRouter);
+app.use("/cart", cartRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
