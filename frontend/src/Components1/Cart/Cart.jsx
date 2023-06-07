@@ -13,12 +13,19 @@ function Cart() {
 
   const [cartData, setcartData] = useState({});
   const [open, setOpen] = React.useState(false);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const fetchData = async () => {
     try {
       const response = await fetch(`${API_URL}/cart`);
       const data = await response.json();
       setcartData(data.cartItems);
+      setTotalPrice(
+        Object.values(data.cartItems).reduce(
+          (total, item) => total + item.price * item.quantity,
+          0
+        )
+      );
     } catch (error) {
       console.error("Error retrieving cart data:", error);
     }
@@ -124,7 +131,7 @@ function Cart() {
                       {item.title}
                     </Typography>
                     <Typography variant="body1" style={{ textAlign: "right" }}>
-                      {item.price * item.quantity} $
+                      $ {item.price * item.quantity}
                     </Typography>
                   </div>
                   <ButtonGroup
@@ -139,9 +146,7 @@ function Cart() {
                   </ButtonGroup>
                 </div>
               ))}
-
               <hr />
-
               <Typography
                 variant="body1"
                 gutterBottom
@@ -152,13 +157,16 @@ function Cart() {
               >
                 <span>Total Price:</span>
                 <span>
+                  ${" "}
                   {Object.values(cartData).reduce(
                     (total, item) => total + item.price * item.quantity,
                     0
                   )}{" "}
-                  $
                 </span>
               </Typography>
+              <Button component={RouterLink} to={`/payment/${totalPrice}`}>
+                Go to Checkout
+              </Button>{" "}
             </>
           )}
         </Box>

@@ -1,10 +1,12 @@
 import { PaymentElement } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
+import { useParams } from "react-router-dom";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
+  const { totalPrice } = useParams();
 
   const [message, setMessage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -45,6 +47,7 @@ export default function CheckoutForm() {
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
       <PaymentElement id="payment-element" />
+      <p>Total Price: $ {totalPrice}</p>
       <button disabled={isProcessing || !stripe || !elements} id="submit">
         <span id="button-text">
           {isProcessing ? "Processing ... " : "Pay now"}

@@ -48,7 +48,7 @@ function App() {
               }
             />
 
-            <Route path="/payment" element={<Payment />} />
+            <Route path="/payment/:totalPrice" element={<Payment />} />
             <Route path="/completion/*" element={<Completion />} />
 
             <Route path={routes.buyFromUs} element={<BuyFromUs />} />
