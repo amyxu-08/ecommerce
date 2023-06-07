@@ -81,7 +81,7 @@ export default function CheckoutForm() {
       // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
-    //alert("Submitted!");
+    //alert("Submaitted!");
 
     setIsProcessing(true);
   
