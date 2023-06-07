@@ -52,6 +52,21 @@ function Cart() {
       console.error("Error deleting item from cart:", error);
     }
   };
+  const handleIncreaseQuantity = async (itemId) => {
+    try {
+      const response = await fetch(`${API_URL}/cart/${itemId}/increase`, {
+        method: "PUT",
+      });
+
+      if (response.ok) {
+        fetchData();
+      } else {
+        console.error("Failed to increase item quantity in cart.");
+      }
+    } catch (error) {
+      console.error("Error increasing item quantity in cart:", error);
+    }
+  };
 
   return (
     <>
@@ -119,7 +134,9 @@ function Cart() {
                   >
                     <Button onClick={() => handleDeleteItem(item.id)}>-</Button>
                     <Button disabled>{item.quantity}</Button>
-                    <Button>+</Button>
+                    <Button onClick={() => handleIncreaseQuantity(item.id)}>
+                      +
+                    </Button>
                   </ButtonGroup>
                 </div>
               ))}
