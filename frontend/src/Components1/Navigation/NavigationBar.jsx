@@ -36,6 +36,7 @@ const NavigationBar = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
   const toggleCart = () => {
+    setIsDrawerOpen(!isDrawerOpen);
     setIsCartOpen(!isCartOpen);
   };
 
@@ -117,10 +118,12 @@ const NavigationBar = () => {
           <ListItem button component={RouterLink} to="/my-music">
             <ListItemText primary="By From You" />
           </ListItem>
-          <ListItem style={{ paddingLeft: 1 }} button component={RouterLink}>
-            <Cart toggleCart={toggleCart}></Cart>
-          </ListItem>
         </List>
+        <div>
+          <ListItem button component={RouterLink}>
+            <Cart toggleCart={toggleCart} />
+          </ListItem>
+        </div>
       </Drawer>
     </AppBar>
   );
