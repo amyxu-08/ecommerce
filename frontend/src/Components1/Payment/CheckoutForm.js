@@ -2,6 +2,7 @@ import { PaymentElement } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { useParams } from "react-router-dom";
+import { Container } from "@mui/system";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -45,16 +46,18 @@ export default function CheckoutForm() {
   };
 
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
-      <PaymentElement id="payment-element" />
-      <p>Total Price: $ {totalPrice}</p>
-      <button disabled={isProcessing || !stripe || !elements} id="submit">
-        <span id="button-text">
-          {isProcessing ? "Processing ... " : "Pay now"}
-        </span>
-      </button>
-      {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
-    </form>
+    <Container maxWidth="lg">
+      <form id="payment-form" onSubmit={handleSubmit}>
+        <PaymentElement id="payment-element" />
+        <p>Total Price: $ {totalPrice}</p>
+        <button disabled={isProcessing || !stripe || !elements} id="submit">
+          <span id="button-text">
+            {isProcessing ? "Processing ... " : "Pay now"}
+          </span>
+        </button>
+        {/* Show any error or success messages */}
+        {message && <div id="payment-message">{message}</div>}
+      </form>
+    </Container>
   );
 }
