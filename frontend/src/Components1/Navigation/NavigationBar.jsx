@@ -92,7 +92,7 @@ const NavigationBar = () => {
             </Button>
             <Button
               component={RouterLink}
-              to="/my-music"
+              to="/buy-from-you"
               color="inherit"
               sx={{
                 mx: 1,

@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
     } else {
       // Item doesn't exist, add it to the cart with quantity 1
       const cartRef = doc(collection(db, "cart"));
-      await setDoc(cartRef, { title, price, rating, quantity: 1 });
+      await setDoc(cartRef, { title, price, rating: rating || null, quantity: 1 });
     }
 
     res.json({ success: true, message: "Item added to cart successfully!" });
@@ -99,4 +99,30 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+router.put("/:id/increase", async (req, res) => {
+  try {
+    const cartItemId = req.params.id;
+
+    const cartItemRef = doc(db, "cart", cartItemId);
+    const cartItemDoc = await getDoc(cartItemRef);
+
+    if (cartItemDoc.exists()) {
+      const currentQuantity = cartItemDoc.data().quantity;
+      await updateDoc(cartItemRef, { quantity: currentQuantity + 1 });
+
+      res.json({
+        success: true,
+        message: "Cart item quantity increased successfully!",
+      });
+    } else {
+      res.status(404).json({ success: false, message: "Cart item not found." });
+    }
+  } catch (error) {
+    console.error("Error increasing cart item quantity:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to increase cart item quantity.",
+    });
+  }
+});
 module.exports = router;
