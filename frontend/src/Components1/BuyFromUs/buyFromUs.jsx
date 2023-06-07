@@ -189,7 +189,7 @@ function BuyFromUs() {
                                   variant="body2"
                                   color="textSecondary"
                                 >
-                                  Price: {data.price}$ | Rating: {data.rating} ★
+                                  ${data.price} | {data.rating} ★
                                 </Typography>
                                 <br />
                               </CardContent>
