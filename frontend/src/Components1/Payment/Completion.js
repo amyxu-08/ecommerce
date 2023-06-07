@@ -1,10 +1,13 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 function Completion(props) {
   return (
     <>
-      <Box height={70}></Box>
-      <h1>Thank you! 🎉</h1>
+      <Box height={100}></Box>
+      <Typography variant="h3">Thank you! 🎉</Typography>
+      <Typography variant="h6" m={2}>
+        Come back soon!
+      </Typography>
     </>
   );
 }

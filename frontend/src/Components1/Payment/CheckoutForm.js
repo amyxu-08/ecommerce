@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { useParams } from "react-router-dom";
 import { Container } from "@mui/system";
+import { Typography } from "@mui/material";
 import axios from "axios";
 
 export default function CheckoutForm() {
@@ -36,7 +37,7 @@ export default function CheckoutForm() {
       // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
-    alert("Submitted!");
+    //alert("Submitted!");
 
     setIsProcessing(true);
 
@@ -57,14 +58,25 @@ export default function CheckoutForm() {
   };
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="sm">
+      <Typography m={3} variant="h6">
+        Total Price: <strong>$ {totalPrice}</strong>
+      </Typography>
       <form id="payment-form" onSubmit={handleSubmit}>
         <PaymentElement id="payment-element" />
-        <p>Total Price: $ {totalPrice}</p>
         <button
           onClick={handleButtonClick}
           disabled={isProcessing || !stripe || !elements}
           id="submit"
+          style={{
+            marginTop: "15px",
+            marginBottom: "15px",
+            backgroundColor: "#297F61",
+            color: "white",
+            boxShadow: "none",
+            padding: "10px 20px",
+            fontSize: "18px",
+          }}
         >
           <span id="button-text">
             {isProcessing ? "Processing ... " : "Pay now"}
