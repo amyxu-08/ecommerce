@@ -1,4 +1,11 @@
-import { Modal, Box, Typography, Button } from "@mui/material";
+import {
+  ButtonGroup,
+  Modal,
+  Drawer,
+  Box,
+  Typography,
+  Button,
+} from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
@@ -37,7 +44,6 @@ function Cart() {
       });
 
       if (response.ok) {
-        // Refresh cart data after successful deletion
         fetchData();
       } else {
         console.error("Failed to delete item from cart.");
@@ -63,16 +69,11 @@ function Cart() {
         Cart
       </Button>
 
-      <Modal open={open} onClose={handleClose}>
+      <Drawer anchor="right" open={open} onClose={handleClose}>
         <Box
           sx={{
-            position: "absolute",
-            top: "50%",
-            right: "0",
-            transform: "translateY(-50%)",
-            width: "500px",
+            width: "425px",
             bgcolor: "background.paper",
-            boxShadow: 24,
             p: 4,
           }}
         >
@@ -84,56 +85,68 @@ function Cart() {
               Your cart is empty, let's start shopping!
             </Typography>
           ) : (
-            Object.values(cartData).map((item) => (
-              <div
-                key={item.id}
+            <>
+              {Object.values(cartData).map((item) => (
+                <div
+                  key={item.id}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column", // Change the flex direction to column
+                    justifyContent: "space-between",
+                    marginBottom: "8px",
+                  }}
+                >
+                  <div
+                    style={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Typography
+                      variant="body1"
+                      style={{
+                        flex: 1,
+                        textAlign: "left",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      {item.title}
+                    </Typography>
+                    <Typography variant="body1" style={{ textAlign: "right" }}>
+                      {item.price * item.quantity} $
+                    </Typography>
+                  </div>
+                  <ButtonGroup
+                    size="small"
+                    aria-label="small outlined button group"
+                  >
+                    <Button onClick={() => handleDeleteItem(item.id)}>-</Button>
+                    <Button disabled>{item.quantity}</Button>
+                    <Button>+</Button>
+                  </ButtonGroup>
+                </div>
+              ))}
+
+              <hr />
+
+              <Typography
+                variant="body1"
+                gutterBottom
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
-                  marginBottom: "8px",
                 }}
               >
-                <RemoveCircleOutlineIcon
-                  style={{
-                    textAlign: "left",
-                    marginRight: "8px",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => handleDeleteItem(item.id)}
-                />
-                <Typography
-                  variant="body1"
-                  style={{ flex: 1, textAlign: "left" }}
-                >
-                  {item.title} x {item.quantity}
-                </Typography>
-                <Typography variant="body1" style={{ textAlign: "right" }}>
-                  {item.price * item.quantity} $
-                </Typography>
-              </div>
-            ))
+                <span>Total Price:</span>
+                <span>
+                  {Object.values(cartData).reduce(
+                    (total, item) => total + item.price * item.quantity,
+                    0
+                  )}{" "}
+                  $
+                </span>
+              </Typography>
+            </>
           )}
-
-          <hr />
-          <Typography
-            variant="body1"
-            gutterBottom
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <span>Total Price:</span>
-            <span>
-              {Object.values(cartData).reduce(
-                (total, item) => total + item.price * item.quantity,
-                0
-              )}{" "}
-              $
-            </span>
-          </Typography>
         </Box>
-      </Modal>
+      </Drawer>
     </>
   );
 }
