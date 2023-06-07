@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { useParams } from "react-router-dom";
 import { Container } from "@mui/system";
+import axios from "axios";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -16,6 +17,16 @@ export default function CheckoutForm() {
     e.preventDefault();
     alert("submitted");
   };*/
+  const handleButtonClick = async () => {
+    const API_URL = "http://localhost:9000";
+    try {
+      const response = await fetch(`${API_URL}/cart`, {
+        method: "DELETE",
+      });
+    } catch (error) {
+      console.error("Error deleting item from cart:", error);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,7 +61,11 @@ export default function CheckoutForm() {
       <form id="payment-form" onSubmit={handleSubmit}>
         <PaymentElement id="payment-element" />
         <p>Total Price: $ {totalPrice}</p>
-        <button disabled={isProcessing || !stripe || !elements} id="submit">
+        <button
+          onClick={handleButtonClick}
+          disabled={isProcessing || !stripe || !elements}
+          id="submit"
+        >
           <span id="button-text">
             {isProcessing ? "Processing ... " : "Pay now"}
           </span>
