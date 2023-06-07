@@ -6,3 +6,8 @@
   box-shadow: 0 30px 50px -20px rgb(50 50 93 / 25%),
     0 30px 60px -30px rgb(0 0 0 / 30%);
 }
+
+.button#submit {
+  background-color: #297f61;
+  color: #f6f9fc;
+}
