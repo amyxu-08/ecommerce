@@ -38,15 +38,18 @@ function App() {
         <Box>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/buy-from-you" element={
-              <>
-                <ItemDisplay />
-                <You />
-              </>
-            } />
+            <Route
+              path="/buy-from-you"
+              element={
+                <>
+                  <ItemDisplay />
+                  <You />
+                </>
+              }
+            />
 
-            <Route path="/payment" element={<Payment />} />
-            <Route path="/completion" element={<Completion />} />
+            <Route path="/payment/:totalPrice" element={<Payment />} />
+            <Route path="/completion/*" element={<Completion />} />
 
             <Route path={routes.buyFromUs} element={<BuyFromUs />} />
           </Routes>

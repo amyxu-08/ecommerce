@@ -14,7 +14,7 @@ function Payment() {
     fetch("http://localhost:9000/server/config").then(async (r) => {
       const { publishableKey } = await r.json();
       setStripePromise(loadStripe(publishableKey));
-      console.log(stripePromise);
+      console.log("p", stripePromise);
     });
   }, []);
 
@@ -33,7 +33,7 @@ function Payment() {
     <>
       <Box height={70}></Box>
       <h1>Checkout Now 💵</h1>
-      {clientSecret && stripePromise && (
+      {clientSecret !== "" && stripePromise !== null && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
           <CheckoutForm />
         </Elements>

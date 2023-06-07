@@ -43,6 +43,10 @@ router.post("/create-payment-intent", async (req, res) => {
   }
 });
 
+router.get("/create-payment-intent", async (req, res) => {
+  res.send("got");
+});
+
 /*router.listen(9000, () =>
   console.log(`Node server listening at http://localhost:9000`)
 );*/
