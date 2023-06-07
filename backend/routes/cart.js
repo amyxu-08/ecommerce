@@ -120,7 +120,7 @@ router.put("/:id/increase", async (req, res) => {
       } else {
         res.status(400).json({
           success: false,
-          message: "Cannot increase quantity beyond available stock.",
+          message: "Can't increase quantity beyond available stock.",
         });
       }
     } else {
