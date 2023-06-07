@@ -8,8 +8,13 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var publicRouter = require("./routes/publicapi/public");
 var itemsRouter = require('./routes/buyfromyou/items');
+
+var serverRouter = require("./routes/server");
+
+
 var buyFromUsRouter = require("./routes/buyFromUs");
 var cartRouter = require("./routes/cart");
+
 var app = express();
 const cors = require("cors");
 
@@ -43,8 +48,12 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/public", publicRouter);
 app.use('/items', itemsRouter);
+
+app.use("/server", serverRouter);
+
 app.use("/buyFromUs", buyFromUsRouter);
 app.use("/cart", cartRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

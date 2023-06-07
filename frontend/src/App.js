@@ -2,6 +2,8 @@ import "./App.css";
 import { Box } from "@mui/system";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Components1/Home/Home";
+import Payment from "./Components1/Payment/Payment";
+import Completion from "./Components1/Payment/Completion";
 import NavigationBar from "./Components1/Navigation/NavigationBar";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import You from "./Components1/buyfromyou/you";
@@ -24,6 +26,9 @@ const theme = createTheme({
     },
   },
 });
+export const routes = {
+  buyFromUs: "/buyFromUs",
+};
 
 function App() {
   return (
@@ -39,7 +44,11 @@ function App() {
                 <You />
               </>
             } />
-            <Route path="/buyFromUs" element={<BuyFromUs />} />
+
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/completion" element={<Completion />} />
+
+            <Route path={routes.buyFromUs} element={<BuyFromUs />} />
           </Routes>
         </Box>
       </div>

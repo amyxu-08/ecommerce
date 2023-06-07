@@ -11,6 +11,7 @@ const {
   updateDoc,
   where,
   getDoc,
+  deleteDoc,
 } = require("firebase/firestore");
 
 router.post("/", async (req, res) => {
@@ -66,6 +67,35 @@ router.get("/", async (req, res) => {
     res
       .status(500)
       .json({ success: false, message: "Failed to retrieve cart items." });
+  }
+});
+router.delete("/:id", async (req, res) => {
+  try {
+    const cartItemId = req.params.id;
+
+    const cartItemRef = doc(db, "cart", cartItemId);
+    const cartItemDoc = await getDoc(cartItemRef);
+
+    if (cartItemDoc.exists()) {
+      const currentQuantity = cartItemDoc.data().quantity;
+
+      if (currentQuantity > 1) {
+        // Decrease the quantity by 1 if it's greater than 1
+        await updateDoc(cartItemRef, { quantity: currentQuantity - 1 });
+      } else {
+        // Remove the cart item if the quantity is 1
+        await deleteDoc(cartItemRef);
+      }
+
+      res.json({ success: true, message: "Cart item removed successfully!" });
+    } else {
+      res.status(404).json({ success: false, message: "Cart item not found." });
+    }
+  } catch (error) {
+    console.error("Error removing cart item:", error);
+    res
+      .status(500)
+      .json({ success: false, message: "Failed to remove cart item." });
   }
 });
 

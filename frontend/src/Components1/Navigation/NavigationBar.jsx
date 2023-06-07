@@ -36,6 +36,7 @@ const NavigationBar = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
   const toggleCart = () => {
+    setIsDrawerOpen(!isDrawerOpen);
     setIsCartOpen(!isCartOpen);
   };
 
@@ -102,19 +103,6 @@ const NavigationBar = () => {
             >
               Buy From You
             </Button>
-            <Button
-              component={RouterLink}
-              to="/profile"
-              color="inherit"
-              sx={{
-                mx: 1,
-                textTransform: "none",
-                textDecoration: "none",
-                "&:hover": { textDecoration: "underline" },
-              }}
-            >
-              Profile
-            </Button>
             <Cart toggleCart={toggleCart}></Cart>
           </div>
         )}
@@ -128,12 +116,14 @@ const NavigationBar = () => {
             <ListItemText primary="Buy From Us" />
           </ListItem>
           <ListItem button component={RouterLink} to="/my-music">
-            <ListItemText primary="My Music" />
-          </ListItem>
-          <ListItem button component={RouterLink} to="/profile">
-            <ListItemText primary="Profile" />
+            <ListItemText primary="By From You" />
           </ListItem>
         </List>
+        <div>
+          <ListItem button component={RouterLink}>
+            <Cart toggleCart={toggleCart} />
+          </ListItem>
+        </div>
       </Drawer>
     </AppBar>
   );
