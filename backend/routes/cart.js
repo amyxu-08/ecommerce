@@ -16,7 +16,7 @@ const {
 
 router.post("/", async (req, res) => {
   try {
-    const { title, price, rating } = req.body;
+    const { title, price, rating, stock } = req.body;
 
     // Check if the item already exists in the cart
     const cartQuery = query(
@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
     } else {
       // Item doesn't exist, add it to the cart with quantity 1
       const cartRef = doc(collection(db, "cart"));
-      await setDoc(cartRef, { title, price, rating: rating || null, quantity: 1 });
+      await setDoc(cartRef, { title, price, rating: rating || null, quantity: 1, stock: stock || 999 });
     }
 
     res.json({ success: true, message: "Item added to cart successfully!" });
@@ -46,6 +46,7 @@ router.post("/", async (req, res) => {
       .json({ success: false, message: "Failed to add item to cart" });
   }
 });
+
 
 router.get("/", async (req, res) => {
   try {
@@ -108,12 +109,20 @@ router.put("/:id/increase", async (req, res) => {
 
     if (cartItemDoc.exists()) {
       const currentQuantity = cartItemDoc.data().quantity;
-      await updateDoc(cartItemRef, { quantity: currentQuantity + 1 });
+      const currentStock = cartItemDoc.data().stock;
 
-      res.json({
-        success: true,
-        message: "Cart item quantity increased successfully!",
-      });
+      if (currentQuantity < currentStock) {
+        await updateDoc(cartItemRef, { quantity: currentQuantity + 1 });
+        res.json({
+          success: true,
+          message: "Cart item quantity increased successfully!",
+        });
+      } else {
+        res.status(400).json({
+          success: false,
+          message: "Can't increase quantity beyond available stock.",
+        });
+      }
     } else {
       res.status(404).json({ success: false, message: "Cart item not found." });
     }
