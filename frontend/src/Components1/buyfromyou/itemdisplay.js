@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardMedia, Grid, Typography, Button, TextField, Snackbar } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import axios from 'axios';
+import You from "./you";
 
 const ItemDisplay = () => {
   const [items, setItems] = useState([]);
@@ -48,7 +49,8 @@ const ItemDisplay = () => {
   );
 
   return (
-    <div style={{ marginTop: '104px' }}>
+    <div style={{ marginTop: '66px' }}>
+      <You />
       <Grid container sx={{ margin: 'auto', maxWidth: '63%' }}>
         <Grid item xs={12} sx={{ marginLeft: '30px' }}>
           <TextField
