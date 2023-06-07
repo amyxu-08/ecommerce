@@ -8,7 +8,8 @@ import {
   Typography,
 } from "@mui/material";
 import styled from "@emotion/styled";
-
+import { useNavigate } from "react-router-dom";
+import { routes } from "../../App";
 const HomePage = styled.div`
   position: relative;
 `;
@@ -45,6 +46,12 @@ const CardContainer = styled.div`
 `;
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  const handleBuyFromUs = () => {
+    navigate(routes.buyFromUs);
+  };
+
   return (
     <HomePage>
       <ClothesImage
@@ -88,7 +95,11 @@ const Home = () => {
                   </Typography>
                 </CardContent>
                 <div style={{ padding: "8px", marginTop: "auto" }}>
-                  <StyledButton variant="contained" color="primary">
+                  <StyledButton
+                    variant="contained"
+                    color="primary"
+                    onClick={handleBuyFromUs}
+                  >
                     Buy from Us
                   </StyledButton>
                   <StyledButton variant="contained" color="primary">

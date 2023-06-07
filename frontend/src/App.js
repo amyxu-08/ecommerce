@@ -24,6 +24,9 @@ const theme = createTheme({
     },
   },
 });
+export const routes = {
+  buyFromUs: "/buyFromUs",
+};
 
 function App() {
   return (
@@ -37,8 +40,7 @@ function App() {
             <Route path="/payment" element={<Payment />} />
             <Route path="/completion" element={<Completion />} />
 
-            <Route path="/buyFromUs" element={<BuyFromUs />} />
-
+            <Route path={routes.buyFromUs} element={<BuyFromUs />} />
           </Routes>
         </Box>
       </div>
