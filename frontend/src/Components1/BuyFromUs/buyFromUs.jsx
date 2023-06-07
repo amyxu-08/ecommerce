@@ -11,7 +11,10 @@ import {
   Tabs,
   Tab,
   TextField,
+  Snackbar,
 } from "@mui/material";
+import MuiAlert from "@mui/material/Alert";
+
 import React, { useState, useEffect } from "react";
 
 function formatTitle(category) {
@@ -27,6 +30,8 @@ function BuyFromUs() {
   const [categoryData, setCategoryData] = useState({});
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
 
   const fetchData = async (category) => {
     try {
@@ -100,6 +105,7 @@ function BuyFromUs() {
       .post(`${API_URL}/cart`, cartItem)
       .then((response) => {
         console.log(response.data);
+        handleSnackbarOpen("Item added to cart successfully!");
       })
       .catch((error) => {
         console.error("Error adding item to cart:", error);
@@ -113,6 +119,10 @@ function BuyFromUs() {
         product.title.toLowerCase().includes(searchQuery.toLowerCase())
       )
     );
+  };
+  const handleSnackbarOpen = (message) => {
+    setSnackbarMessage(message);
+    setSnackbarOpen(true);
   };
 
   return (
@@ -194,6 +204,23 @@ function BuyFromUs() {
                                   Add to Cart
                                 </Button>
                               </div>
+                              <Snackbar
+                                open={snackbarOpen}
+                                anchorOrigin={{
+                                  vertical: "top",
+                                  horizontal: "center",
+                                }}
+                                autoHideDuration={1500}
+                                onClose={() => setSnackbarOpen(false)}
+                              >
+                                <MuiAlert
+                                  variant="filled"
+                                  onClose={() => setSnackbarOpen(false)}
+                                  severity="info"
+                                >
+                                  {snackbarMessage}
+                                </MuiAlert>
+                              </Snackbar>
                             </Card>
                           </Grid>
                         ))}
