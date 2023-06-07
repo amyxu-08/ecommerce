@@ -125,4 +125,24 @@ router.put("/:id/increase", async (req, res) => {
     });
   }
 });
+
+router.delete("/", async (req, res) => {
+  try {
+    // Retrieve all cart documents
+    const cartRef = collection(db, "cart");
+    const querySnapshot = await getDocs(cartRef);
+
+    // Delete each cart document
+    const deletePromises = querySnapshot.docs.map((doc) =>
+      deleteDoc(doc.ref)
+    );
+    await Promise.all(deletePromises);
+
+    res.json({ success: true, message: "All cart items removed successfully!" });
+  } catch (error) {
+    console.error("Error removing cart items:", error);
+    res.status(500).json({ success: false, message: "Failed to remove cart items." });
+  }
+});
+
 module.exports = router;
