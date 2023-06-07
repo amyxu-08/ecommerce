@@ -102,19 +102,6 @@ const NavigationBar = () => {
             >
               Buy From You
             </Button>
-            <Button
-              component={RouterLink}
-              to="/profile"
-              color="inherit"
-              sx={{
-                mx: 1,
-                textTransform: "none",
-                textDecoration: "none",
-                "&:hover": { textDecoration: "underline" },
-              }}
-            >
-              Profile
-            </Button>
             <Cart toggleCart={toggleCart}></Cart>
           </div>
         )}
@@ -130,10 +117,7 @@ const NavigationBar = () => {
           <ListItem button component={RouterLink} to="/my-music">
             <ListItemText primary="By From You" />
           </ListItem>
-          <ListItem button component={RouterLink} to="/profile">
-            <ListItemText primary="Profile" />
-          </ListItem>
-          <ListItem style={{ paddingLeft: 6 }} button component={RouterLink}>
+          <ListItem style={{ paddingLeft: 1 }} button component={RouterLink}>
             <Cart toggleCart={toggleCart}></Cart>
           </ListItem>
         </List>
