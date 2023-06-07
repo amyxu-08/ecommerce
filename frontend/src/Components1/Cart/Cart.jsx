@@ -79,30 +79,40 @@ function Cart() {
           <Typography variant="h6" component="h2" gutterBottom>
             Your Cart
           </Typography>
-          {Object.values(cartData).map((item) => (
-            <div
-              key={item.id}
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginBottom: "8px",
-              }}
-            >
-              <RemoveCircleOutlineIcon
-                style={{ textAlign: "left", marginRight: "8px" }}
-                onClick={() => handleDeleteItem(item.id)}
-              />
-              <Typography
-                variant="body1"
-                style={{ flex: 1, textAlign: "left" }}
+          {Object.keys(cartData).length === 0 ? (
+            <Typography variant="body2" style={{ textAlign: "left" }}>
+              Your cart is empty, let's start shopping!
+            </Typography>
+          ) : (
+            Object.values(cartData).map((item) => (
+              <div
+                key={item.id}
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  marginBottom: "8px",
+                }}
               >
-                {item.title} x {item.quantity}
-              </Typography>
-              <Typography variant="body1" style={{ textAlign: "right" }}>
-                {item.price * item.quantity} $
-              </Typography>
-            </div>
-          ))}
+                <RemoveCircleOutlineIcon
+                  style={{
+                    textAlign: "left",
+                    marginRight: "8px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => handleDeleteItem(item.id)}
+                />
+                <Typography
+                  variant="body1"
+                  style={{ flex: 1, textAlign: "left" }}
+                >
+                  {item.title} x {item.quantity}
+                </Typography>
+                <Typography variant="body1" style={{ textAlign: "right" }}>
+                  {item.price * item.quantity} $
+                </Typography>
+              </div>
+            ))
+          )}
 
           <hr />
           <Typography
