@@ -9,7 +9,7 @@ var usersRouter = require("./routes/users");
 var publicRouter = require("./routes/publicapi/public");
 var itemsRouter = require('./routes/buyfromyou/items');
 
-//var serverRouter = require("./routes/server");
+var serverRouter = require("./routes/server");
 
 
 var buyFromUsRouter = require("./routes/buyFromUs");
@@ -49,7 +49,7 @@ app.use("/users", usersRouter);
 app.use("/public", publicRouter);
 app.use('/items', itemsRouter);
 
-//app.use("/server", serverRouter);
+app.use("/server", serverRouter);
 
 app.use("/buyFromUs", buyFromUsRouter);
 app.use("/cart", cartRouter);
