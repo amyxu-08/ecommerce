@@ -8,7 +8,7 @@ import Stack from '@mui/material/Stack';
 const PostButton = ({ postData, onClose, setErrorMessage }) => {
   const handleClick = async () => {
     // Check if all fields have values
-    if (!postData.image || !postData.name || !postData.user || !postData.price || !postData.quantity || !postData.email) {
+    if (!postData.image || !postData.name || !postData.user || !postData.price || !postData.email) {
       // Update error message
       setErrorMessage('Please fill out all fields');
       return;
@@ -40,7 +40,6 @@ const You = () => {
   const [name, setName] = useState('');
   const [user, setUser] = useState('');
   const [price, setPrice] = useState(0);
-  const [quantity, setQuantity] = useState(0);
   const [email, setEmail] = useState('');
   const [open, setOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -53,7 +52,6 @@ const You = () => {
       setName('');
       setUser('');
       setPrice(0);
-      setQuantity(0);
       setEmail('');
       setErrorMessage('');
     }
@@ -61,7 +59,8 @@ const You = () => {
 
   return (
     <div>
-      <Button variant="contained" onClick={handleOpen}>Add an Item</Button>
+      <Button variant="contained" onClick={handleOpen} sx={{ marginTop: '16px' }}>Add an Item</Button>
+
       <Modal
         open={open}
         onClose={() => handleClose(false)}
@@ -121,17 +120,9 @@ const You = () => {
               margin="normal"
               required
             /><br />
-            <TextField
-              label="Quantity"
-              value={quantity}
-              onChange={e => setQuantity(e.target.value)}
-              fullWidth
-              margin="normal"
-              required
-            /><br />
           </form>
           <Stack direction="row" spacing={2}>
-            <PostButton postData={{ image, name, user, price, quantity, email }} onClose={handleClose} setErrorMessage={setErrorMessage} />
+            <PostButton postData={{ image, name, user, price, email }} onClose={handleClose} setErrorMessage={setErrorMessage} />
             <Button variant="contained" onClick={() => handleClose(true)}>Cancel</Button>
           </Stack>
         </Box>

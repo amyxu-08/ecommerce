@@ -15,10 +15,10 @@ const ItemDisplay = () => {
     fetchItems();
   }, []);
 
-  const handleAddToCart = (item) => {
+  const handleAddToCart = (data) => {
     const cartItem = {
-      title: item.name,
-      price: item.price,
+      title: data.name,
+      price: data.price,
     };
 
     axios
@@ -27,7 +27,7 @@ const ItemDisplay = () => {
         console.log(response.data);
       })
       .catch((error) => {
-        console.error('Error adding item to cart:', error);
+        console.error("Error adding item to cart:", error);
       });
   };
 
@@ -42,7 +42,6 @@ const ItemDisplay = () => {
               <CardContent style={{ flexGrow: 1 }}>
                 <Typography variant="h6" component="div" gutterBottom>{item.name}</Typography>
                 <Typography variant="body2" color="textSecondary">Price: ${item.price}</Typography>
-                <Typography variant="body2" color="textSecondary">Quantity: {item.quantity}</Typography>
                 <Typography variant="body2" color="textSecondary">Seller: {item.user}</Typography>
                 <Typography variant="body2" color="textSecondary">Email: {item.email}</Typography>
               </CardContent>
