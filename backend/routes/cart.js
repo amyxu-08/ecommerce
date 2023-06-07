@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
     } else {
       // Item doesn't exist, add it to the cart with quantity 1
       const cartRef = doc(collection(db, "cart"));
-      await setDoc(cartRef, { title, price, rating, quantity: 1 });
+      await setDoc(cartRef, { title, price, rating: rating || null, quantity: 1 });
     }
 
     res.json({ success: true, message: "Item added to cart successfully!" });
