@@ -19,6 +19,7 @@ const ItemDisplay = () => {
     const cartItem = {
       title: data.name,
       price: data.price,
+      stock: data.quantity
     };
 
     axios
@@ -42,6 +43,7 @@ const ItemDisplay = () => {
               <CardContent style={{ flexGrow: 1 }}>
                 <Typography variant="h6" component="div" gutterBottom>{item.name}</Typography>
                 <Typography variant="body2" color="textSecondary">Price: ${item.price}</Typography>
+                <Typography variant="body2" color="textSecondary">Quantity: {item.quantity}</Typography>
                 <Typography variant="body2" color="textSecondary">Seller: {item.user}</Typography>
                 <Typography variant="body2" color="textSecondary">Email: {item.email}</Typography>
               </CardContent>
