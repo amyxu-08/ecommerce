@@ -8,7 +8,6 @@ import {
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { Link as RouterLink } from "react-router-dom";
-import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 function Cart() {
   const API_URL = "http://localhost:9000";
 
