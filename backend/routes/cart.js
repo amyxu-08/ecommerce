@@ -35,7 +35,13 @@ router.post("/", async (req, res) => {
     } else {
       // Item doesn't exist, add it to the cart with quantity 1
       const cartRef = doc(collection(db, "cart"));
-      await setDoc(cartRef, { title, price, rating: rating || null, quantity: 1, stock: stock || 999 });
+      await setDoc(cartRef, {
+        title,
+        price,
+        rating: rating || null,
+        quantity: 1,
+        stock: stock || 5,
+      });
     }
 
     res.json({ success: true, message: "Item added to cart successfully!" });
@@ -46,7 +52,6 @@ router.post("/", async (req, res) => {
       .json({ success: false, message: "Failed to add item to cart" });
   }
 });
-
 
 router.get("/", async (req, res) => {
   try {
@@ -142,15 +147,18 @@ router.delete("/", async (req, res) => {
     const querySnapshot = await getDocs(cartRef);
 
     // Delete each cart document
-    const deletePromises = querySnapshot.docs.map((doc) =>
-      deleteDoc(doc.ref)
-    );
+    const deletePromises = querySnapshot.docs.map((doc) => deleteDoc(doc.ref));
     await Promise.all(deletePromises);
 
-    res.json({ success: true, message: "All cart items removed successfully!" });
+    res.json({
+      success: true,
+      message: "All cart items removed successfully!",
+    });
   } catch (error) {
     console.error("Error removing cart items:", error);
-    res.status(500).json({ success: false, message: "Failed to remove cart items." });
+    res
+      .status(500)
+      .json({ success: false, message: "Failed to remove cart items." });
   }
 });
 
