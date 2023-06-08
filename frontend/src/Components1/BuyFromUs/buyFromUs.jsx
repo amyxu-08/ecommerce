@@ -26,7 +26,7 @@ function formatTitle(category) {
 }
 
 function BuyFromUs() {
-  const API_URL = "http://localhost:9000";
+  const API_URL = "https://backend-ecommerce-f.onrender.com";
 
   const [categoryData, setCategoryData] = useState({});
   const [selectedCategory, setSelectedCategory] = useState("all");

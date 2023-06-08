@@ -15,7 +15,7 @@ const PostButton = ({ postData, onClose, setErrorMessage }) => {
  }
 
  try {
- const response = await fetch('http://localhost:9000/items', {
+ const response = await fetch('https://backend-ecommerce-f.onrender.com/items', {
  method: 'POST',
  headers: {
  'Content-Type': 'application/json'

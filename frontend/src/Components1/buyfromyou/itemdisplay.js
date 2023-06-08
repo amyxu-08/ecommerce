@@ -18,7 +18,7 @@ const ItemDisplay = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarOpenForStock, setSnackbarOpenForStock] = useState(false);
-  const API_URL = "http://localhost:9000";
+  const API_URL = "https://backend-ecommerce-f.onrender.com";
 
   useEffect(() => {
     const fetchItems = async () => {

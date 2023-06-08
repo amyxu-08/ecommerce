@@ -11,7 +11,7 @@ import {
 import React, { useState, useEffect } from "react";
 import { Link as RouterLink } from "react-router-dom";
 function Cart() {
-  const API_URL = "http://localhost:9000";
+  const API_URL = "https://backend-ecommerce-f.onrender.com";
 
   const [cartData, setcartData] = useState({});
   const [open, setOpen] = React.useState(false);

@@ -27,6 +27,7 @@ const theme = createTheme({
 });
 export const routes = {
   buyFromUs: "/buyFromUs",
+  buyFromYou: "/buy-from-you",
 };
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route
-              path="/buy-from-you"
+              path={routes.buyFromYou}
               element={
                 <>
                   <ItemDisplay />

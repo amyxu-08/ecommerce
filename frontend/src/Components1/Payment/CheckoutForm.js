@@ -19,25 +19,25 @@ export default function CheckoutForm() {
     alert("submitted");
   };*/
   const handleButtonClick = async () => {
-    const API_URL = "http://localhost:9000";
+    const API_URL = "https://backend-ecommerce-f.onrender.com";
     try {
       const response = await fetch(`${API_URL}/cart`);
       const { cartItems } = await response.json();
-    
+
       // Get all products from the products collection
       const productsResponse = await fetch(`${API_URL}/public/items/all`);
       const products = await productsResponse.json();
-    
+
       // Update the stock for each item in the cart
       for (const cartItem of cartItems) {
         const newStock = cartItem.stock - cartItem.quantity;
-    
+
         const product = products.find(
-          product => product.name === cartItem.title
+          (product) => product.name === cartItem.title
         );
         console.log(product);
         console.log(newStock);
-        
+
         if (product) {
           // Update the stock for the item in the products collection
           await fetch(`${API_URL}/items/${product.id}`, {
@@ -47,7 +47,7 @@ export default function CheckoutForm() {
             },
             body: JSON.stringify({ quantity: newStock }),
           });
-    
+
           // Delete the product if its stock is 0
           if (newStock === 0) {
             await fetch(`${API_URL}/items/${product.id}`, {
@@ -59,8 +59,7 @@ export default function CheckoutForm() {
     } catch (error) {
       console.error("Error updating products:", error);
     }
-    
-    
+
     try {
       const response = await fetch(`${API_URL}/cart`, {
         method: "DELETE",
@@ -69,11 +68,10 @@ export default function CheckoutForm() {
       console.error("Error deleting item from cart:", error);
     }
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!stripe || !elements) {
       // Stripe.js has not yet loaded.
       // Make sure to disable form submission until Stripe.js has loaded.
@@ -82,14 +80,14 @@ export default function CheckoutForm() {
     //alert("Submaitted!");
 
     setIsProcessing(true);
-  
+
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
         return_url: `${window.location.origin}/completion/`,
       },
     });
-  
+
     if (error.type === "card_error" || error.type === "validation_error") {
       setMessage(error.message);
     } else {
@@ -97,7 +95,6 @@ export default function CheckoutForm() {
     }
     setIsProcessing(false);
   };
-  
 
   return (
     <Container maxWidth="sm">
