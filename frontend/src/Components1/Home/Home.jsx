@@ -51,6 +51,9 @@ const Home = () => {
   const handleBuyFromUs = () => {
     navigate(routes.buyFromUs);
   };
+  const handleBuyFromYou = () => {
+    navigate('/buy-from-you');
+  };
 
   return (
     <HomePage>
@@ -102,7 +105,11 @@ const Home = () => {
                   >
                     Buy from Us
                   </StyledButton>
-                  <StyledButton variant="contained" color="primary">
+                  <StyledButton
+                    variant="contained"
+                    color="primary"
+                    onClick={handleBuyFromYou}
+                  >
                     Buy from You
                   </StyledButton>
                 </div>
