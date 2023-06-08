@@ -12,6 +12,7 @@ import {
   Tab,
   TextField,
   Snackbar,
+  Alert,
 } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 
@@ -32,6 +33,7 @@ function BuyFromUs() {
   const [searchQuery, setSearchQuery] = useState("");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarOpenForStock, setSnackbarOpenForStock] = useState(false);
 
   const fetchData = async (category) => {
     try {
@@ -108,7 +110,11 @@ function BuyFromUs() {
         handleSnackbarOpen("Item added to cart successfully!");
       })
       .catch((error) => {
-        console.error("Error adding item to cart:", error);
+        if (error.response && error.response.status === 400) {
+          setSnackbarOpenForStock(true);
+        } else {
+          console.error("Error adding item to cart:", error);
+        }
       });
   };
 
@@ -123,6 +129,9 @@ function BuyFromUs() {
   const handleSnackbarOpen = (message) => {
     setSnackbarMessage(message);
     setSnackbarOpen(true);
+  };
+  const handleSnackbarClose = () => {
+    setSnackbarOpenForStock(false);
   };
 
   return (
@@ -231,6 +240,17 @@ function BuyFromUs() {
             )}
           </React.Fragment>
         ))}
+        <Snackbar
+          open={snackbarOpenForStock}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          autoHideDuration={1000}
+          onClose={handleSnackbarClose}
+        >
+          <Alert severity="error">Maximum stock reached</Alert>
+        </Snackbar>
       </Container>
     </>
   );
