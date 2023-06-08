@@ -244,7 +244,7 @@ function BuyFromUs() {
           open={snackbarOpenForStock}
           anchorOrigin={{
             vertical: "top",
-            horizontal: "right",
+            horizontal: "center",
           }}
           autoHideDuration={1000}
           onClose={handleSnackbarClose}
