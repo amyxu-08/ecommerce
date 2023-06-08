@@ -36,8 +36,6 @@ export default function CheckoutForm() {
           product => product.name === cartItem.title
         );
         console.log(product);
-        console.log(`product.name: ${product.name}`);
-        console.log(`cartItem.title: ${cartItem.title}`);
         console.log(newStock);
         
         if (product) {
