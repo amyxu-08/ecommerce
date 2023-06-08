@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../firebase');
-const { collection, doc, getDocs , getDoc } = require('firebase/firestore');
+const { collection, doc, getDocs, getDoc } = require('firebase/firestore');
 console.log('public.js loaded')
 router.get('/items/all', async (req, res) => {
   // retrieve list of available products from Firebase
@@ -10,7 +10,6 @@ router.get('/items/all', async (req, res) => {
   const products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
   res.json(products);
 });
-
 
 router.get('/item/:id', async (req, res) => {
   const itemId = req.params.id;
