@@ -31,7 +31,19 @@ router.post("/", async (req, res) => {
       const cartItemRef = doc(db, "cart", cartDocs[0].id);
       const cartItemDoc = await getDoc(cartItemRef);
       const currentQuantity = cartItemDoc.data().quantity;
-      await updateDoc(cartItemRef, { quantity: currentQuantity + 1 });
+      const currentStock = cartItemDoc.data().stock;
+      if (currentQuantity < currentStock) {
+        await updateDoc(cartItemRef, { quantity: currentQuantity + 1 });
+        return res.json({
+          success: true,
+          message: "Cart item quantity increased successfully!",
+        });
+      } else {
+        return res.status(400).json({
+          success: false,
+          message: "Can't increase quantity beyond available stock.",
+        });
+      }
     } else {
       // Item doesn't exist, add it to the cart with quantity 1
       const cartRef = doc(collection(db, "cart"));
@@ -44,7 +56,10 @@ router.post("/", async (req, res) => {
       });
     }
 
-    res.json({ success: true, message: "Item added to cart successfully!" });
+    return res.json({
+      success: true,
+      message: "Item added to cart successfully!",
+    });
   } catch (error) {
     console.error("Error adding item to cart:", error);
     res
