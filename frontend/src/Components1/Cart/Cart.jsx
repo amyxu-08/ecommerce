@@ -5,15 +5,18 @@ import {
   Box,
   Typography,
   Button,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { Link as RouterLink } from "react-router-dom";
 function Cart() {
-  const API_URL = "http://localhost:9000";
+  const API_URL = "https://backend-ecommerce-f.onrender.com";
 
   const [cartData, setcartData] = useState({});
   const [open, setOpen] = React.useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -66,12 +69,17 @@ function Cart() {
 
       if (response.ok) {
         fetchData();
+      } else if (response.status === 400) {
+        setSnackbarOpen(true);
       } else {
         console.error("Failed to increase item quantity in cart.");
       }
     } catch (error) {
       console.error("Error increasing item quantity in cart:", error);
     }
+  };
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
   };
 
   return (
@@ -169,6 +177,17 @@ function Cart() {
               </Button>{" "}
             </>
           )}
+          <Snackbar
+            open={snackbarOpen}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            autoHideDuration={1500}
+            onClose={handleSnackbarClose}
+          >
+            <Alert severity="error">Maximum stock reached</Alert>
+          </Snackbar>
         </Box>
       </Drawer>
     </>

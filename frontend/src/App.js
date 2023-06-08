@@ -6,7 +6,6 @@ import Payment from "./Components1/Payment/Payment";
 import Completion from "./Components1/Payment/Completion";
 import NavigationBar from "./Components1/Navigation/NavigationBar";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import You from "./Components1/buyfromyou/you";
 import BuyFromUs from "./Components1/BuyFromUs/buyFromUs";
 import ItemDisplay from "./Components1/buyfromyou/itemdisplay";
 const theme = createTheme({
@@ -28,6 +27,7 @@ const theme = createTheme({
 });
 export const routes = {
   buyFromUs: "/buyFromUs",
+  buyFromYou: "/buy-from-you",
 };
 
 function App() {
@@ -39,11 +39,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route
-              path="/buy-from-you"
+              path={routes.buyFromYou}
               element={
                 <>
                   <ItemDisplay />
-                  <You />
                 </>
               }
             />

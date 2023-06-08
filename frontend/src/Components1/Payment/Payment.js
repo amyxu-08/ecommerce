@@ -11,18 +11,23 @@ function Payment() {
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:9000/server/config").then(async (r) => {
-      const { publishableKey } = await r.json();
-      setStripePromise(loadStripe(publishableKey));
-      console.log("p", stripePromise);
-    });
+    fetch("https://backend-ecommerce-f.onrender.com/server/config").then(
+      async (r) => {
+        const { publishableKey } = await r.json();
+        setStripePromise(loadStripe(publishableKey));
+        console.log("p", stripePromise);
+      }
+    );
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:9000/server/create-payment-intent", {
-      method: "POST",
-      body: JSON.stringify({}),
-    }).then(async (result) => {
+    fetch(
+      "https://backend-ecommerce-f.onrender.com/server/create-payment-intent",
+      {
+        method: "POST",
+        body: JSON.stringify({}),
+      }
+    ).then(async (result) => {
       var { clientSecret } = await result.json();
       setClientSecret(clientSecret);
       console.log(clientSecret);

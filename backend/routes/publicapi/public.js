@@ -7,9 +7,10 @@ router.get('/items/all', async (req, res) => {
   // retrieve list of available products from Firebase
   const productsRef = collection(db, 'products');
   const snapshot = await getDocs(productsRef);
-  const products = snapshot.docs.map(doc => doc.data());
+  const products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
   res.json(products);
 });
+
 
 router.get('/item/:id', async (req, res) => {
   const itemId = req.params.id;
