@@ -1,4 +1,4 @@
-import "./App.css";
+//import "./App.css";
 import { Box } from "@mui/system";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Components1/Home/Home";
