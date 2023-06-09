@@ -51,7 +51,7 @@ const NavigationBar = () => {
           component="div"
           sx={{ flexGrow: 1, textAlign: "left" }}
         >
-          ECommerce
+          Eco-commerce
         </Typography>
         {isMobile ? (
           <IconButton
