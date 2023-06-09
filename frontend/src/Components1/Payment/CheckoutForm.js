@@ -3,8 +3,7 @@ import { useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { useParams } from "react-router-dom";
 import { Container } from "@mui/system";
-import { Typography } from "@mui/material";
-import axios from "axios";
+import { Grid, TextField, Typography } from "@mui/material";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -14,77 +13,26 @@ export default function CheckoutForm() {
   const [message, setMessage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  /*const handleSubmit = (e) => {
-    e.preventDefault();
-    alert("submitted");
-  };*/
-  const handleButtonClick = async () => {
-    const API_URL = "https://backend-ecommerce-f.onrender.com";
-    try {
-      const response = await fetch(`${API_URL}/cart`);
-      const { cartItems } = await response.json();
-
-      // Get all products from the products collection
-      const productsResponse = await fetch(`${API_URL}/public/items/all`);
-      const products = await productsResponse.json();
-
-      // Update the stock for each item in the cart
-      for (const cartItem of cartItems) {
-        const newStock = cartItem.stock - cartItem.quantity;
-
-        const product = products.find(
-          (product) => product.name === cartItem.title
-        );
-        console.log(product);
-        console.log(newStock);
-
-        if (product) {
-          // Update the stock for the item in the products collection
-          await fetch(`${API_URL}/items/${product.id}`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ quantity: newStock }),
-          });
-
-          // Delete the product if its stock is 0
-          if (newStock === 0) {
-            await fetch(`${API_URL}/items/${product.id}`, {
-              method: "DELETE",
-            });
-          }
-        }
-      }
-    } catch (error) {
-      console.error("Error updating products:", error);
-    }
-
-    try {
-      const response = await fetch(`${API_URL}/cart`, {
-        method: "DELETE",
-      });
-    } catch (error) {
-      console.error("Error deleting item from cart:", error);
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const API_URL = "https://backend-ecommerce-f.onrender.com";
 
     if (!stripe || !elements) {
       // Stripe.js has not yet loaded.
       // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
-    //alert("Submaitted!");
-
     setIsProcessing(true);
+
+    const parameters = new URLSearchParams();
+    parameters.append('name', document.getElementById('checkout-name').value);
+    parameters.append('email', document.getElementById('checkout-email').value);
 
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `https://frontend-ecommerce-f.onrender.com/completion/`,
+        return_url: `${window.location.origin}/completion?${parameters.toString()}`,
       },
     });
 
@@ -98,13 +46,49 @@ export default function CheckoutForm() {
 
   return (
     <Container maxWidth="sm">
-      <Typography m={3} variant="h6">
-        Total Price: <strong>$ {totalPrice}</strong>
-      </Typography>
       <form id="payment-form" onSubmit={handleSubmit}>
+        <Typography m={3} variant="h6">
+          Total Price: <strong>$ {totalPrice}</strong>
+        </Typography>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <TextField required id="checkout-name" label="Full name" fullWidth />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField required id="checkout-email" label="Email" fullWidth />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              required
+              id="address1"
+              label="Address line 1"
+              fullWidth
+              autoComplete="shipping address-line1"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              id="address2"
+              label="Address line 2"
+              fullWidth
+              autoComplete="shipping address-line2"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField required id="city" label="City" fullWidth />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField required id="state" label="State/Province/Region" fullWidth />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField required id="zip" label="Zip / Postal code" fullWidth />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField required id="country" label="Country" fullWidth />
+          </Grid>
+        </Grid>
         <PaymentElement id="payment-element" />
         <button
-          onClick={handleButtonClick}
           disabled={isProcessing || !stripe || !elements}
           id="submit"
           style={{
