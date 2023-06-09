@@ -115,7 +115,7 @@ const NavigationBar = () => {
           <ListItem button component={RouterLink} to="/buyFromUs">
             <ListItemText primary="Buy From Us" />
           </ListItem>
-          <ListItem button component={RouterLink} to="/my-music">
+          <ListItem button component={RouterLink} to="/buy-from-you">
             <ListItemText primary="By From You" />
           </ListItem>
         </List>
