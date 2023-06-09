@@ -36,12 +36,14 @@ Along with this, if other developers are interested in creating API calls from o
 
 ### Major Components and Features
 
-* Payment & Checkout
-    * This application uses Stripe API to integrate payment forms and allow for flexible modes of payment. 
-* BuyFromYou
+* Buy From Us
     * This application uses RESTFul API along with Express to scrape information from a dummyJSON api to display clothing that is available for purchase. This is paired with matierial UI's grid system to ensure seamless transition between mobile and desktop view.
+* Buy From You
+    * Users can upload and sell their own items on this website as well as explore items being sold by others.
 * Cart
     * This application uses FireBase as the DB to store prevelant cart information between sessions so users can efficiently and effectivley shop and proceed to checkout when ready.
+* Payment & Checkout
+    * This application uses Stripe API to integrate payment forms and allow for flexible modes of payment. 
 * Email Service
     * The free EmailJS service is used to handle all automated outward communcation with users about their orders.
 
@@ -54,5 +56,6 @@ With this configuration, all of the features will work as intended.
 ### Credits
 
 * [Amy Xu](https://www.linkedin.com/in/amyxu08/) - Backend, Payment
-* [Zaid Fada](https://www.linkedin.com/in/zaid-fada/) - Backend, BuyFromYou, Cart
+* [Zaid Fada](https://www.linkedin.com/in/zaid-fada/) - Backend, Buy From Us, Cart
 * [William Kieffer](https://www.linkedin.com/in/williamkieffer24/) - Email Service
+* [Kevin Shi](https://www.linkedin.com/in/kevinshi0/) - Buy From You
