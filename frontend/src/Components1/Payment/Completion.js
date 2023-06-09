@@ -4,10 +4,9 @@ import { useLocation } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 
 function Completion() {
-
   const API_URL = "https://backend-ecommerce-f.onrender.com";
-  const email = new URLSearchParams(useLocation().search).get('email');
-  const name = new URLSearchParams(useLocation().search).get('name');
+  const email = new URLSearchParams(useLocation().search).get("email");
+  const name = new URLSearchParams(useLocation().search).get("name");
 
   useEffect(() => {
     const clearCartSendEmail = async () => {
@@ -57,13 +56,17 @@ function Completion() {
         console.error("Error deleting item from cart:", error);
       }
 
-
-      //Send email/* 
-      emailjs.send("service_wc5r8pq", "template_nl7akfi", {
-        to_name: name,
-        to_email: email,
-      }, '-SGgWrr1IV45PVLiv');
-    }
+      //Send email/*
+      emailjs.send(
+        "service_wc5r8pq",
+        "template_nl7akfi",
+        {
+          to_name: name,
+          to_email: email,
+        },
+        "-SGgWrr1IV45PVLiv"
+      );
+    };
     clearCartSendEmail();
   }, []);
 
@@ -71,6 +74,9 @@ function Completion() {
     <>
       <Box height={100}></Box>
       <Typography variant="h3">Thank you! 🎉</Typography>
+      <Typography variant="h6" m={2}>
+        A confirmation email has been sent to you.
+      </Typography>
       <Typography variant="h6" m={2}>
         Come back soon!
       </Typography>
