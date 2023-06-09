@@ -30,7 +30,7 @@ However, the application is now deployed using render, and users can use our app
 
 Along with this, if other developers are interested in creating API calls from our website, here are some available get calls:
 
-* [For All Items](https://backend-ecommerce-f.onrender.com/buyFromUs/items/all) 
+* [For all items](https://backend-ecommerce-f.onrender.com/buyFromUs/items/all) 
 * [For a specific item with a given id](https://backend-ecommerce-f.onrender.com/buyFromUs/item/1), change the id in item/:id
 * [For a specific category of items](https://backend-ecommerce-f.onrender.com/buyFromUs/womens-dresses), change the category in /buyFromUs/:category 
 
