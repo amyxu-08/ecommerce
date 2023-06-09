@@ -22,7 +22,7 @@ To use our project, begin by cloning our repository. Then, navigate to the `fron
 
 ### How to Use
 
-To run this application, first `cd` into the `spotify-app` folder and run `npm start`. Then, in a new terminal session, `cd` into the `backend` folder and run `npm start`. This will start the backend on Port 9000 and the frontend on Port 3000.
+To run this application, first `cd` into the `frontend` folder and run `npm start`. Then, in a new terminal session, `cd` into the `backend` folder and run `npm start`. This will start the backend on Port 9000 and the frontend on Port 3000.
 
 Since we are using both an express backend and a React frontend, ensure that you are running your backend on Port 9000, as all calls to the backend in the frontend are made to Port 9000. 
 
