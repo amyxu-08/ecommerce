@@ -39,4 +39,4 @@ With this configuration, all of the features will work as intended.
 
 ### Credits
 
-* [Amy Xu](https://www.linkedin.com/in/amyxu08/) - Backend, Spotify Authentication
+* [Amy Xu](https://www.linkedin.com/in/amyxu08/) - Backend, Payment
