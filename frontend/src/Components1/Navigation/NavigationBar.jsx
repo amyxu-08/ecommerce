@@ -120,7 +120,16 @@ const NavigationBar = () => {
           </ListItem>
         </List>
         <div>
-          <ListItem button component={RouterLink}>
+          <ListItem
+            button
+            component={RouterLink}
+            sx={{
+              mx: -3,
+              textTransform: "none",
+              textDecoration: "none",
+              "&:hover": { textDecoration: "underline" },
+            }}
+          >
             <Cart toggleCart={toggleCart} />
           </ListItem>
         </div>
