@@ -30,6 +30,8 @@ Since we are using both an express backend and a React frontend, ensure that you
 
 * Payment & Checkout
     * This application uses Stripe API to integrate payment forms and allow for flexible modes of payment. 
+* Email Service
+    * The free EmailJS service is used to handle all automated outward communcation with users about their orders.
 
 ### Feature Statuses
 
@@ -40,3 +42,4 @@ With this configuration, all of the features will work as intended.
 ### Credits
 
 * [Amy Xu](https://www.linkedin.com/in/amyxu08/) - Backend, Payment
+* [William Kieffer](https://www.linkedin.com/in/williamkieffer24/) - Email Service
