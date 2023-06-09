@@ -30,6 +30,10 @@ Since we are using both an express backend and a React frontend, ensure that you
 
 * Payment & Checkout
     * This application uses Stripe API to integrate payment forms and allow for flexible modes of payment. 
+* BuyFromYou
+    * This application uses RESTFul API along with Express to scrape information from a dummyJSON api to display clothing that is available for purchase. This is paired with matierial UI's grid system to ensure seamless transition between mobile and desktop view.
+* Cart
+    * This application uses FireBase as the DB to store prevelant cart information between sessions so users can efficiently and effectivley shop and proceed to checkout when ready.
 
 ### Feature Statuses
 
@@ -40,3 +44,4 @@ With this configuration, all of the features will work as intended.
 ### Credits
 
 * [Amy Xu](https://www.linkedin.com/in/amyxu08/) - Backend, Payment
+* [Zaid Fada](https://www.linkedin.com/in/zaid-fada/) - Backend, BuyFromYou, Cart
