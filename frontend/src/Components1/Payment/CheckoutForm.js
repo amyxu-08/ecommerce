@@ -26,13 +26,15 @@ export default function CheckoutForm() {
     setIsProcessing(true);
 
     const parameters = new URLSearchParams();
-    parameters.append('name', document.getElementById('checkout-name').value);
-    parameters.append('email', document.getElementById('checkout-email').value);
+    parameters.append("name", document.getElementById("checkout-name").value);
+    parameters.append("email", document.getElementById("checkout-email").value);
 
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `${window.location.origin}/completion?${parameters.toString()}`,
+        return_url: `${
+          window.location.origin
+        }/completion?${parameters.toString()}`,
       },
     });
 
@@ -52,7 +54,12 @@ export default function CheckoutForm() {
         </Typography>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <TextField required id="checkout-name" label="Full name" fullWidth />
+            <TextField
+              required
+              id="checkout-name"
+              label="Full name"
+              fullWidth
+            />
           </Grid>
           <Grid item xs={12}>
             <TextField required id="checkout-email" label="Email" fullWidth />
@@ -78,7 +85,12 @@ export default function CheckoutForm() {
             <TextField required id="city" label="City" fullWidth />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField required id="state" label="State/Province/Region" fullWidth />
+            <TextField
+              required
+              id="state"
+              label="State/Province/Region"
+              fullWidth
+            />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField required id="zip" label="Zip / Postal code" fullWidth />
@@ -87,6 +99,7 @@ export default function CheckoutForm() {
             <TextField required id="country" label="Country" fullWidth />
           </Grid>
         </Grid>
+        <hr></hr>
         <PaymentElement id="payment-element" />
         <button
           disabled={isProcessing || !stripe || !elements}
