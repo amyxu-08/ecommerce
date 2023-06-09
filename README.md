@@ -48,5 +48,6 @@ With this configuration, all of the features will work as intended.
 ### Credits
 
 * [Amy Xu](https://www.linkedin.com/in/amyxu08/) - Backend, Payment
-* [Zaid Fada](https://www.linkedin.com/in/zaid-fada/) - Backend, BuyFromYou, Cart
+* [Zaid Fada](https://www.linkedin.com/in/zaid-fada/) - Backend, Buy From Us, Cart
 * [William Kieffer](https://www.linkedin.com/in/williamkieffer24/) - Email Service
+* [Kevin Shi](https://www.linkedin.com/in/kevinshi0/) - Buy From You
