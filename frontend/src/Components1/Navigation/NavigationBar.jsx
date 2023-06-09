@@ -51,7 +51,7 @@ const NavigationBar = () => {
           component="div"
           sx={{ flexGrow: 1, textAlign: "left" }}
         >
-          ECommerce
+          Eco-commerce
         </Typography>
         {isMobile ? (
           <IconButton
@@ -115,12 +115,21 @@ const NavigationBar = () => {
           <ListItem button component={RouterLink} to="/buyFromUs">
             <ListItemText primary="Buy From Us" />
           </ListItem>
-          <ListItem button component={RouterLink} to="/my-music">
+          <ListItem button component={RouterLink} to="/buy-from-you">
             <ListItemText primary="By From You" />
           </ListItem>
         </List>
         <div>
-          <ListItem button component={RouterLink}>
+          <ListItem
+            button
+            component={RouterLink}
+            sx={{
+              mx: -3,
+              textTransform: "none",
+              textDecoration: "none",
+              "&:hover": { textDecoration: "underline" },
+            }}
+          >
             <Cart toggleCart={toggleCart} />
           </ListItem>
         </div>

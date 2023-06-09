@@ -42,7 +42,7 @@ const StyledButton = styled(Button)`
 const CardContainer = styled.div`
   position: relative;
   z-index: 1;
-  margin-top: -15%;
+  margin-top: -25%;
 `;
 
 const Home = () => {
@@ -58,7 +58,7 @@ const Home = () => {
   return (
     <HomePage>
       <ClothesImage
-        src="https://www.productphoto.com/wp-content/uploads/2021/06/Things-to-consider-while-taking-Clothing-Product-Photography-on-White-Background.jpg"
+        src="https://images.pexels.com/photos/8396726/pexels-photo-8396726.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         alt="Clothes"
       />
       <SloganContainer>
@@ -105,7 +105,11 @@ const Home = () => {
                   >
                     Buy from Us
                   </StyledButton>
-                  <StyledButton variant="contained" color="primary" onClick={handleBuyFromYou}>
+                  <StyledButton
+                    variant="contained"
+                    color="primary"
+                    onClick={handleBuyFromYou}
+                  >
                     Buy from You
                   </StyledButton>
                 </div>
