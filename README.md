@@ -1,7 +1,5 @@
 # Eco-commerce
 
-Welcome to the central repository for Eco-commerce, the Week 3 Project created for Forge's Launch Program in the Software Engineering Track in 2023. 
-
 ## About
 
 This project is a web application that allows users to view, list and buy items online. It is also integrated with Stripe API to allow intuitive payment and checkout and EmailJS to send confirmation emails upon purchase. We were specifically tasked with using an [ExpressJS](https://expressjs.com/) backend, a [ReactJS](https://reactjs.org/) frontend, and a [Firebase](https://firebase.google.com/) database.
